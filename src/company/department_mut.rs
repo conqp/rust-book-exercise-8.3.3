@@ -12,7 +12,7 @@ impl<'entry> DepartmentMut<'entry> {
 }
 
 impl<'entry> From<Entry<'entry, String, Vec<String>>> for DepartmentMut<'entry> {
-    fn from(inner: Entry<'entry, String, Vec<String>>) -> Self {
-        Self { entry: inner }
+    fn from(entry: Entry<'entry, String, Vec<String>>) -> Self {
+        Self { entry }
     }
 }
