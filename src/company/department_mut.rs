@@ -6,8 +6,8 @@ pub struct DepartmentMut<'entry> {
 }
 
 impl<'entry> DepartmentMut<'entry> {
-    pub fn add(self, employee: &str) {
-        self.entry.or_default().push(employee.into())
+    pub fn add(self, employee: impl ToString) {
+        self.entry.or_default().push(employee.to_string());
     }
 }
 

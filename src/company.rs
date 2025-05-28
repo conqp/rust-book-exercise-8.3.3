@@ -15,15 +15,15 @@ pub struct Company {
 
 impl Company {
     #[must_use]
-    pub fn department(&self, department: &str) -> Option<Department> {
+    pub fn department(&self, department: impl AsRef<str>) -> Option<Department> {
         self.departments
-            .get(department)
+            .get(department.as_ref())
             .map(AsRef::as_ref)
             .map(Into::into)
     }
 
     #[must_use]
-    pub fn department_mut(&mut self, department: &str) -> DepartmentMut<'_> {
+    pub fn department_mut(&mut self, department: impl ToString) -> DepartmentMut<'_> {
         self.departments.entry(department.to_string()).into()
     }
 
