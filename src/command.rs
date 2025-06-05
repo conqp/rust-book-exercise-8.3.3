@@ -1,11 +1,11 @@
-use std::cell::LazyCell;
 use std::str::FromStr;
+use std::sync::LazyLock;
 
 use regex::Regex;
 
-const LIST: LazyCell<Regex> =
-    LazyCell::new(|| Regex::new(r"list(?:\s+(\w+))?").expect("Invalid regex. This is a bug."));
-const ADD: LazyCell<Regex> = LazyCell::new(|| {
+const LIST: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"list(?:\s+(\w+))?").expect("Invalid regex. This is a bug."));
+const ADD: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"add\s+(\w+)\s+to\s+(\w+)").expect("Invalid regex. This is a bug.")
 });
 
